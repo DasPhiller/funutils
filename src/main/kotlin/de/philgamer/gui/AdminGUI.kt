@@ -14,9 +14,9 @@ class AdminGUI {
         title = "§cAdmin Menu"
 
         //Items:
-        val ph = ItemStack(Material.GLASS)
+        val ph = ItemStack(Material.GRAY_STAINED_GLASS_PANE)
         val phMeta = ph.itemMeta
-        phMeta?.setDisplayName("")
+        phMeta?.setDisplayName("§4")
         phMeta?.customModel = 1
         ph.itemMeta = phMeta
 
@@ -40,13 +40,37 @@ class AdminGUI {
         paperBackMeta?.setDisplayName("§6»Letzte Seite")
         paperback.itemMeta = paperBackMeta
 
+        val gm0 = ItemStack(Material.NETHERRACK)
+        val gm0Meta = gm0.itemMeta
+        gm0Meta?.setDisplayName("§cGamemode Survival")
+        gm0.itemMeta = gm0Meta
+
+        val gm2 = ItemStack(Material.CHEST)
+        val gm2Meta = gm2.itemMeta
+        gm2Meta?.setDisplayName("§eGamemode Adventure")
+        gm2.itemMeta = gm2Meta
+
+        val gm3 = ItemStack(Material.GRAY_STAINED_GLASS)
+        val gm3Meta = gm3.itemMeta
+        gm3Meta?.setDisplayName("§7Gamemode Spectator")
+        gm3.itemMeta = gm3Meta
         page(0) {
-            placeholder(Slots.Border, ph)
+            placeholder(Slots.All, ph)
             nextPage(Slots.RowOneSlotNine, paper)
 
-            button(Slots.RowTwoSlotThree, gm1) {
+            button(Slots.RowThreeSlotFour, gm1) {
                 it.player.gameMode = GameMode.CREATIVE
 
+            }
+            button(Slots.RowThreeSlotThree, gm0) {
+                it.player.gameMode = GameMode.SURVIVAL
+            }
+
+            button(Slots.RowThreeSlotFive, gm2) {
+                it.player.gameMode = GameMode.ADVENTURE
+            }
+            button(Slots.RowThreeSlotSix, gm3) {
+                it.player.gameMode = GameMode.SPECTATOR
             }
             }
         page(1) {
@@ -54,7 +78,7 @@ class AdminGUI {
             transitionTo = PageChangeEffect.SLIDE_HORIZONTALLY
 
             placeholder(Slots.All, soon)
-            nextPage(Slots.RowOneSlotNine, paperback)
+            nextPage(Slots.RowOneSlotNine, paper)
             previousPage(Slots.RowOneSlotOne, paperback)
         }
 
